@@ -22,13 +22,11 @@ function complete() {
 // Get Quotee From API
 async function getQuote() {
     loading();
-    //const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
     const apiUrl = 'https://api.quotable.io/random';
        try {
            const response = await fetch(apiUrl);
            const data = await response.json();
-           //console.log(data.author);
-            // Si il manque le nom de l'autheur, rajouter 'Inconnue'
+            // S'il manque le nom de l'autheur, rajouter 'Inconnue'
            if (data.author === '') {
                authorText.innerText = 'Inconnue';
            } else {
@@ -44,8 +42,8 @@ async function getQuote() {
            // Stop Loader, Show Quote
            complete();
        } catch (error) {
-           //getQuote();
-           console.log('Whoops !!!', error);
+           getQuote();
+
        }
 
 }
@@ -63,11 +61,5 @@ newQuoteBtn.addEventListener('click', getQuote);
 twitterBtn.addEventListener('click', tweetQuote);
 
 // On Load
-getQuote()
-//loading();
-/*async function randomQuote() {
-    const response = await fetch('https://api.quotable.io/random')
-    const data = await response.json()
-    console.log(`${data.content} —${data.author}`)
-}
-randomQuote()*/
+getQuote();
+
